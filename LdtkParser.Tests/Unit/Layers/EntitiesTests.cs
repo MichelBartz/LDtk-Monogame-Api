@@ -91,8 +91,7 @@ namespace LdtkParser.Tests.Unit.Layers
         private static List<EntityInstance> GetInstances(Queue<string> identifiers)
         {
             var instances = new List<EntityInstance>();
-            string instanceName;
-            while (identifiers.TryDequeue(out instanceName))
+            while (identifiers.TryDequeue(out string instanceName))
             {
                 instances.Add(GetEntityInstance(instanceName));
             }
@@ -101,14 +100,15 @@ namespace LdtkParser.Tests.Unit.Layers
 
         private static EntityInstance GetEntityInstance(string instanceIdentifier)
         {
-            var ei = new EntityInstance();
-            ei.Identifier = instanceIdentifier;
-            ei.Px = new List<long>() { 0, 0 };
-            ei.Grid = new List<long>() { 0, 0 };
-            ei.Pivot = new List<double>() { 0, 0 };
-            ei.Tile = null;
-            ei.FieldInstances = new List<FieldInstance>();
-            return ei;
+            return new EntityInstance
+            {
+                Identifier = instanceIdentifier,
+                Px = new List<long>() { 0, 0 },
+                Grid = new List<long>() { 0, 0 },
+                Pivot = new List<double>() { 0, 0 },
+                Tile = null,
+                FieldInstances = new List<FieldInstance>()
+            };
         }
     }
 }

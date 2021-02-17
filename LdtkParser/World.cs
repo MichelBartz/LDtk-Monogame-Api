@@ -18,15 +18,16 @@ namespace LdtkParser
     {
         private const string EnumPrefix = "LocalEnum.";
 
-        private string filename;
-        private List<SpriteEnum> spriteEnums;
-        private Dictionary<string, List<string>> enums;
-        private List<Level> levels;
+        private readonly string filename;
+        private readonly List<SpriteEnum> spriteEnums;
+        private readonly Dictionary<string, List<string>> enums;
+        private readonly List<Level> levels;
+        private readonly GraphicsDevice GraphicsDevice;
         private Project ldtkProject;
         private string worldDirectory; // For loading tilesets
-        private GraphicsDevice GraphicsDevice;
+        
 
-        private static Dictionary<int, Tileset> tilesets = new Dictionary<int, Tileset>();
+        private readonly static Dictionary<int, Tileset> tilesets = new Dictionary<int, Tileset>();
 
         public World(string worldFile, GraphicsDevice graphicsDevice)
         {
@@ -49,12 +50,6 @@ namespace LdtkParser
             LoadEnums();
             LoadLevels(ldtkProject.ExternalLevels);
         }
-
-        private void LoadExternalLevels()
-        {
-
-        }
-
         private void LoadTilesets()
         {
             ldtkProject.Defs.Tilesets.ForEach(delegate (Json.Tileset t)
@@ -190,8 +185,7 @@ namespace LdtkParser
 
         public static Tileset GetTileset(int uid)
         {
-            Tileset t;
-            if (tilesets.TryGetValue(uid, out t))
+            if (tilesets.TryGetValue(uid, out Tileset t))
             {
                 return t;
             }

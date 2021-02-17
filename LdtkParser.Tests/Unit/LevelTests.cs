@@ -45,6 +45,8 @@ namespace LdtkParser.Tests.Unit
         public void GetNeighbourByUid_InvalidDirection_WillSee(Level level, Direction dir, int expectedUid)
         {
             var neighbourUid = level.GetNeighbourUid(Direction.East);
+
+            Assert.AreEqual(-1, neighbourUid);
         }
     }
 

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 
 namespace LdtkParser.Graphics
 {
-    // Not so sold on this nomenclature SpriteEnum probably better in keep with Ldtk
     public class SpriteEnum
     {
         public string Identifier { get; }
         public Tileset Tileset { get; }
 
-        private List<Sprite> sources;
+        private readonly List<Sprite> sources;
 
         public SpriteEnum(string id, Tileset tileset)
         {
