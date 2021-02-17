@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using LdtkLevel = LdtkParser.Json.Level;
 using LdtkIntGrid = LdtkParser.Json.IntGrid;
 using IntGrid = LdtkParser.Layers.IntGrid;
@@ -15,10 +14,7 @@ using LdtkParser.Exceptions;
 
 namespace LdtkParser
 {
-    // For now this is a bit of a entry point to the Ldtk file data
-    // Might want to rethink it -> As an ouput I want something as Ldtk neutral as possible
-    // We take the upfront approach: transform all of Ldtk at startup time rather than on demand
-    public class World
+    public class World : IWorld
     {
         private const string EnumPrefix = "LocalEnum.";
 
@@ -99,14 +95,14 @@ namespace LdtkParser
             ldtkProject.Levels.ForEach(delegate (LdtkLevel l)
             {
                 Level level;
-                
+
                 if (l.BgRelPath != null)
                 {
                     var texture = Texture2D.FromFile(GraphicsDevice, Path.Combine(worldDirectory, l.BgRelPath));
                     var bgPosition = new Point((int)l.BgPos.TopLeftPx[0], (int)l.BgPos.TopLeftPx[1]);
 
                     level = new Level(l.Identifier, (int)l.WorldX, (int)l.WorldY, texture, bgPosition);
-                } 
+                }
                 else
                 {
                     level = new Level(l.Identifier, (int)l.WorldX, (int)l.WorldY);
