@@ -1,6 +1,4 @@
-﻿using Game1.Graphics;
-using Game1.LdtkParser;
-using Game1.LdtkParser.Layers;
+﻿using LdtkParser.Layers;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
