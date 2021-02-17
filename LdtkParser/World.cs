@@ -47,7 +47,12 @@ namespace LdtkParser
 
             LoadTilesets();
             LoadEnums();
-            LoadLevels();
+            LoadLevels(ldtkProject.ExternalLevels);
+        }
+
+        private void LoadExternalLevels()
+        {
+
         }
 
         private void LoadTilesets()
@@ -90,27 +95,45 @@ namespace LdtkParser
             enums.Add(EnumPrefix + e.Identifier, enumValues);
         }
 
-        private void LoadLevels()
+        private void LoadLevels(bool externalLevels)
         {
-            ldtkProject.Levels.ForEach(delegate (LdtkLevel l)
+            if (externalLevels)
             {
-                Level level;
+                ldtkProject.Levels.ForEach(l => LoadLevelFromExternal(l.ExternalRelPath));
+            } else
+            {
+                ldtkProject.Levels.ForEach(LoadLevel);
+            }
+            //Link neighbours
+        }
 
-                if (l.BgRelPath != null)
-                {
-                    var texture = Texture2D.FromFile(GraphicsDevice, Path.Combine(worldDirectory, l.BgRelPath));
-                    var bgPosition = new Point((int)l.BgPos.TopLeftPx[0], (int)l.BgPos.TopLeftPx[1]);
+        private void LoadLevelFromExternal(string path)
+        {
+            var fullPath = Path.Combine(worldDirectory, path);
+            var levelContents = File.ReadAllText(fullPath);
 
-                    level = new Level(l.Identifier, (int)l.WorldX, (int)l.WorldY, texture, bgPosition);
-                }
-                else
-                {
-                    level = new Level(l.Identifier, (int)l.WorldX, (int)l.WorldY);
-                }
+            var ldtkLevel = Newtonsoft.Json.JsonConvert.DeserializeObject<LdtkLevel>(levelContents);
+            LoadLevel(ldtkLevel);
+        }
 
-                l.LayerInstances.ForEach(l => LoadLayer(level, l));
-                levels.Add(level);
-            });
+        private void LoadLevel(LdtkLevel l)
+        {
+            Level level;
+
+            if (l.BgRelPath != null)
+            {
+                var texture = Texture2D.FromFile(GraphicsDevice, Path.Combine(worldDirectory, l.BgRelPath));
+                var bgPosition = new Point((int)l.BgPos.TopLeftPx[0], (int)l.BgPos.TopLeftPx[1]);
+
+                level = new Level((int)l.Uid, l.Identifier, (int)l.WorldX, (int)l.WorldY, texture, bgPosition);
+            }
+            else
+            {
+                level = new Level((int)l.Uid, l.Identifier, (int)l.WorldX, (int)l.WorldY);
+            }
+
+            l.LayerInstances.ForEach(l => LoadLayer(level, l));
+            levels.Add(level);
         }
 
         private void LoadLayer(Level level, LayerInstance layerInstance)
@@ -162,6 +185,8 @@ namespace LdtkParser
         }
 
         public Level GetLevel(string identifier) => levels.Find(l => l.LevelName.Equals(identifier));
+
+        public Level GetLevelByUid(int uid) => levels.Find(l => l.Uid.Equals(uid));
 
         public static Tileset GetTileset(int uid)
         {

@@ -58,9 +58,10 @@ namespace LdtkParser.Tests.Unit
 
         private static Level GetLevelWithLayers(string name, Type[] layerTypes)
         {
-            var level = new Level(name, 0, 0);
+            var level = new Level(1, name, 0, 0);
+
             int layerNum = 0;
-            foreach(Type t in layerTypes)
+            foreach (Type t in layerTypes)
             {
                 if (t.Name == typeof(IntGrid).Name)
                 {
@@ -74,6 +75,7 @@ namespace LdtkParser.Tests.Unit
                 {
                     //Not supported until I can figure out how to get this whole graphics device thingy figured out for unit tests
                 }
+                layerNum++;
             }
             return level;
         }

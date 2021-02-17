@@ -411,13 +411,22 @@ namespace LdtkParser.Json
         public BgPos BgPos { get; set; }
 
         [JsonProperty("externalRelPath")]
-        public object ExternalRelPath { get; set; }
+        public string ExternalRelPath { get; set; }
 
         [JsonProperty("layerInstances")]
         public List<LayerInstance> LayerInstances { get; set; }
 
         [JsonProperty("__neighbours")]
-        public List<object> Neighbours { get; set; }
+        public List<Neighbour> Neighbours { get; set; }
+    }
+
+    public partial class Neighbour
+    {
+        [JsonProperty("levelUid")]
+        public long LevelUid { get; set; }
+
+        [JsonProperty("dir")]
+        public string Dir { get; set; }
     }
 
     public partial class BgPos
