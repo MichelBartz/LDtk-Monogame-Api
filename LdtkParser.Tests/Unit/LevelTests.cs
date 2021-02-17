@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LdtkParser.Tests
+namespace LdtkParser.Tests.Unit
 {
     class LevelTests
     {

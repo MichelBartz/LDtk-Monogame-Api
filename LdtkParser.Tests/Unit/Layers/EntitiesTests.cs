@@ -5,7 +5,7 @@ using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace LdtkParser.Tests.Layers
+namespace LdtkParser.Tests.Unit.Layers
 {
     internal class FakeEntity : ILdtkEntity
     {

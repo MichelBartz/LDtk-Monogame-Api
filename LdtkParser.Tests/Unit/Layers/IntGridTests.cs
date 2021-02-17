@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using LdtkParser.Layers;
 using NUnit.Framework;
 
-namespace LdtkParser.Tests
+namespace LdtkParser.Tests.Unit.Layers
 {
     [TestFixture]
     public class IntGridTests
