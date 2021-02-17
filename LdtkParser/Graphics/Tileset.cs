@@ -21,6 +21,13 @@ namespace LdtkParser.Graphics
             TileGridSize = gridSize;
         }
 
+        /// <summary>
+        /// Gets the Rectangle for a given tile id on the Tileset.
+        /// LDtk starts IDs at 0, where the ID can be unpacked using width and gridsize.
+        /// </summary>
+        /// <param name="tileId">The ID we want</param>
+        /// <returns>A Rectangle that describes our tile on this tileset</returns>
+        /// <exception cref="LdtkParser.Exceptions.InvalidTileException">Thrown when the id is out of bounds for this tileset</exception>
         public Rectangle GetTileById(int tileId)
         {
             if (tileId > NumTiles-1)

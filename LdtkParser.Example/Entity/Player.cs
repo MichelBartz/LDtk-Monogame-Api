@@ -39,7 +39,7 @@ namespace Game1.Entity
 
         public override void Draw()
         {
-            spriteRenderer.DrawAt(Animations.Tileset.Texture, Animations.GetFrameByKey(currentFrame.ToString()).Source, Pos);
+            spriteRenderer.DrawAt(Animations.Tileset.Texture, Animations.GetSpriteByKey(currentFrame.ToString()).Source, Pos);
         }
     }
 }

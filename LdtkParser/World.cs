@@ -14,6 +14,9 @@ using LdtkParser.Exceptions;
 
 namespace LdtkParser
 {
+    /// <summary>
+    /// Wraps the LDtk imported file and gives access to it's contents (via levels)
+    /// </summary>
     public class World : IWorld
     {
         private const string EnumPrefix = "LocalEnum.";
@@ -183,6 +186,12 @@ namespace LdtkParser
 
         public Level GetLevelByUid(int uid) => levels.Find(l => l.Uid.Equals(uid));
 
+        /// <summary>
+        /// Returns a given tileset
+        /// </summary>
+        /// <param name="uid">The LDtk UID for the tileset</param>
+        /// <returns>The found tileset</returns>
+        /// <exception cref="LdtkParser.Exceptions.TilesetNotFoundException">Thrown if the tileset for the given UID does not exists</exception>
         public static Tileset GetTileset(int uid)
         {
             if (tilesets.TryGetValue(uid, out Tileset t))
@@ -193,6 +202,12 @@ namespace LdtkParser
             throw new TilesetNotFoundException("Tileset with id " + uid + " was not found");
         }
 
+        /// <summary>
+        /// Gets a SpriteEnum
+        /// A SpriteEnum is an abstraction level on LDtk Enums that have icons/tileset attached
+        /// </summary>
+        /// <param name="identifier">The name of the Enum as defined in LDtk</param>
+        /// <returns>The SpriteEnum</returns>
         public SpriteEnum GetSpriteEnum(string identifier)
         {
             return spriteEnums.Find(sm => sm.Identifier.Equals(identifier));

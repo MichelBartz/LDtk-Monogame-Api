@@ -18,6 +18,12 @@ namespace LdtkParser.Layers
         }
         public LayerType GetLayerType() => LayerType.Entities;
 
+        /// <summary>
+        /// Returns an entity of type T
+        /// </summary>
+        /// <typeparam name="T">An entity that implements ILdtkEntity</typeparam>
+        /// <returns>The found entity</returns>
+        /// <exception cref="LdtkParser.Exceptions.EntityNotFoundException">Thrown if no entity of type T was found</exception>
         public T GetEntity<T>() where T: ILdtkEntity, new()
         {
             try
@@ -31,8 +37,12 @@ namespace LdtkParser.Layers
                 throw new EntityNotFoundException($"Entity of type '{typeof(T)}' was not found in layer '{Name}'", e);
             }
         }
-        // Do I worry about the performance of this?
-        // Would I want to do a preloading indexing of EntityInstance by Identifier for easy yes/no lookup. (Seems like an obvious yes but is performance that bad as is?)
+
+        /// <summary>
+        /// Returns all entities of type T
+        /// </summary>
+        /// <typeparam name="T">An entity that implements ILdtkEntity</typeparam>
+        /// <returns>The entities found (can be empty)</returns>
         public List<T> GetEntities<T>() where T: ILdtkEntity, new()
         {
            return entityInstances.Where(ei => ei.Identifier.Equals(typeof(T).Name))

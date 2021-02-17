@@ -21,6 +21,11 @@ namespace LdtkParser.Layers
             Values.Add((p, value));
         }
 
+        /// <summary>
+        /// Returns the given integer value for a gird coordinate
+        /// </summary>
+        /// <param name="gridCoord">The grid coordinate (in the current level the layer belongs to)</param>
+        /// <returns>The value or -1</returns>
         public int GetValue(Point gridCoord)
         {
             int index = Values.FindIndex(((Point p, int v) intGrid) => intGrid.p.Equals(gridCoord));
