@@ -30,6 +30,7 @@ namespace LdtkParser.Layers
             ProcessFieldInstances(entityInstance);
         }
 
+        // this is not working as intended, ExpendoObject is weird
         private void ProcessFieldInstances(EntityInstance entityInstance)
         {
             // We have N types, if Enum we want to store the enum type so that we can easily do a lookup in the EntityFactory if we wanted to
@@ -61,7 +62,7 @@ namespace LdtkParser.Layers
                         Fields.TryAdd(f.Identifier, color);
                         break;
                     case "LocalEnum":
-                        Fields.TryAdd(f.Identifier, new { Value = f.Value.String, EnumType = f.Type });
+                        Fields.TryAdd(f.Identifier, new EnumValue(f.Value.String, f.Type));
                         break;
                 }
             });

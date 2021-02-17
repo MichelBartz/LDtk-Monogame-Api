@@ -19,7 +19,7 @@ namespace Game1
         private Factory entityFactory;
         private World world;
         private LevelTiles currentLevelTiles;
-        private List<BaseEntity> entities;
+        private List<RenderableEntity> renderables;
 
         public Game1()
         {
@@ -30,6 +30,7 @@ namespace Game1
 
         protected override void Initialize()
         {
+            renderables = new List<RenderableEntity>();
             base.Initialize();
         }
 
@@ -50,12 +51,10 @@ namespace Game1
 
             var entities = ldtkLevel.GetLayerByName<Entities>("Entities");
             var player = entities.GetEntity<Player>();
+            player.SetSpriteRenderer(spriteRenderer);
 
-            // Load player
-            // Do i need an entity factory of some sort?
-            // var playerInstance = world.GetEntityInstance(currentLevel, Player.Identifier);
-            // player = entityFactory.FromPlayerInstance(playerInstance);
-
+            renderables.Add(player);
+                
             // Load Collision layer
 
             // Read entities
@@ -79,7 +78,7 @@ namespace Game1
             spriteRenderer.Begin();
 
             currentLevelTiles.Draw();
-            //player.Draw();
+            renderables.ForEach(r => r.Draw());
 
             spriteRenderer.Commit();
 

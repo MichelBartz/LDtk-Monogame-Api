@@ -29,7 +29,9 @@ namespace Game1.Entity
         public SpriteEnum Animations;
         public void FromLdtk(EntityModel entity)
         {
-
+            //Animations = World.GetSpriteEnum(
+            //    ((EnumValue)entity.Fields.animations).EnumType
+            //);
         }
 
         public void Update()
@@ -39,7 +41,7 @@ namespace Game1.Entity
 
         public override void Draw()
         {
-            spriteRenderer.DrawAt(Animations.Tileset.Texture, Animations.GetSpriteByKey(currentFrame.ToString()).Source, Pos);
+            //spriteRenderer.DrawAt(Animations.Tileset.Texture, Animations.GetSpriteByKey(currentFrame.ToString()).Source, Pos);
         }
     }
 }

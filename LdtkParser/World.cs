@@ -22,21 +22,19 @@ namespace LdtkParser
         private const string EnumPrefix = "LocalEnum.";
 
         private readonly string filename;
-        private readonly List<SpriteEnum> spriteEnums;
         private readonly Dictionary<string, List<string>> enums;
         private readonly List<Level> levels;
         private readonly GraphicsDevice GraphicsDevice;
         private Project ldtkProject;
         private string worldDirectory; // For loading tilesets
-        
 
+        private readonly static List<SpriteEnum> spriteEnums = new List<SpriteEnum>();
         private readonly static Dictionary<int, Tileset> tilesets = new Dictionary<int, Tileset>();
 
         public World(string worldFile, GraphicsDevice graphicsDevice)
         {
             filename = worldFile;
             GraphicsDevice = graphicsDevice;
-            spriteEnums = new List<SpriteEnum>();
             enums = new Dictionary<string, List<string>>();
             levels = new List<Level>();
             Load();
@@ -208,7 +206,7 @@ namespace LdtkParser
         /// </summary>
         /// <param name="identifier">The name of the Enum as defined in LDtk</param>
         /// <returns>The SpriteEnum</returns>
-        public SpriteEnum GetSpriteEnum(string identifier)
+        public static SpriteEnum GetSpriteEnum(string identifier)
         {
             return spriteEnums.Find(sm => sm.Identifier.Equals(identifier));
         }
