@@ -1,6 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using LdtkParser.Exceptions;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace LdtkParser.Graphics
 {
@@ -25,7 +25,7 @@ namespace LdtkParser.Graphics
         {
             if (tileId > NumTiles-1)
             {
-                throw new InvalidTileIdException(tileId + " is not a valid tile id for this tileset");
+                throw new InvalidTileException(tileId + " is not a valid tile id for this tileset");
             }
 
             int y = (int)(tileId / Width) * TileGridSize;
@@ -33,10 +33,5 @@ namespace LdtkParser.Graphics
 
             return new Rectangle(x, y, TileGridSize, TileGridSize);
         }
-    }
-
-    class InvalidTileIdException : Exception 
-    {
-        public InvalidTileIdException(string message): base(message) { }
     }
 }

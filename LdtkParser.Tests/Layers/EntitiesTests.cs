@@ -1,4 +1,5 @@
-﻿using LdtkParser.Json;
+﻿using LdtkParser.Exceptions;
+using LdtkParser.Json;
 using LdtkParser.Layers;
 using NUnit.Framework;
 using System.Collections;
@@ -14,32 +15,76 @@ namespace LdtkParser.Tests.Layers
         }
     }
 
-    [TestFixtureSource(typeof(EntityInstanceData), nameof(EntityInstanceData.Fixtureparams))]
+    internal class FakeEntityTwo : ILdtkEntity
+    {
+        public void FromLdtk(EntityModel entityModel)
+        {
+
+        }
+    }
+
     class EntitiesTests
     {
         private Entities entities;
 
-        public EntitiesTests(List<EntityInstance> entityInstances)
-        {
-            entities = new Entities("TestLayer", entityInstances);
-        }
-
-        [Test]
-        public void GetEntity_WithOne_ReturnsEntity()
+        [TestCaseSource(typeof(EntityInstanceData), nameof(EntityInstanceData.GetEntityParams))]
+        public void GetEntity_Exist_ReturnsEntity(Entities entities)
         {
             var myEntity = entities.GetEntity<FakeEntity>();
 
             Assert.IsInstanceOf(typeof(FakeEntity), myEntity);
         }
+
+        [TestCaseSource(typeof(EntityInstanceData), nameof(EntityInstanceData.GetEntityParams))]
+        public void GetEntity_NonExistant_ThrowsException(Entities entities)
+        {
+            Assert.Throws<EntityNotFoundException>(() => entities.GetEntity<FakeEntityTwo>());
+        }
+
+        [TestCaseSource(typeof(EntityInstanceData), nameof(EntityInstanceData.GetEntitiesParams))]
+        public void GetEntities_All(Entities entities, int expectedCount)
+        {
+            var found = entities.GetEntities<FakeEntity>();
+
+            Assert.AreEqual(expectedCount, found.Count);
+        }
+
+        [TestCaseSource(typeof(EntityInstanceData), nameof(EntityInstanceData.GetEntitiesParams))]
+        public void GetEntities_NonExistant_ReturnsNothing(Entities entities, int expectedCount)
+        {
+            var found = entities.GetEntities<FakeEntityTwo>();
+
+            Assert.Zero(found.Count);
+        }
     }
 
     class EntityInstanceData
     {
-        public static IEnumerable Fixtureparams
+        public static IEnumerable GetEntitiesParams
         {
             get
             {
-                yield return new TestFixtureData(GetInstances(GetEntityNames("FakeEntity")));
+                yield return new object[] {
+                    new Entities("TestLayer", GetInstances(GetEntityNames("FakeEntity"))),
+                    1
+                };
+                yield return new object[] {
+                    new Entities("TestLayer", GetInstances(GetEntityNames("FakeEntity","FakeEntity"))),
+                    2
+                };
+                yield return new object[] {
+                    new Entities("TestLayer", GetInstances(GetEntityNames("DoesNotMatch", "FakeFakeEntity"))),
+                    0
+                };
+            }
+        }
+
+        public static IEnumerable GetEntityParams
+        {
+            get
+            {
+                yield return new Entities("TestLayer", GetInstances(GetEntityNames("FakeEntity")));
+                yield return new Entities("TestLayer", GetInstances(GetEntityNames("FakeEntity", "FakeEntity")));
             }
         }
 

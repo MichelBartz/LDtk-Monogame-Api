@@ -11,6 +11,7 @@ using LdtkIntGrid = LdtkParser.Json.IntGrid;
 using IntGrid = LdtkParser.Layers.IntGrid;
 using Tileset = LdtkParser.Graphics.Tileset;
 using Entities = LdtkParser.Layers.Entities;
+using LdtkParser.Exceptions;
 
 namespace LdtkParser
 {
@@ -182,12 +183,5 @@ namespace LdtkParser
             return spriteEnums.Find(sm => sm.Identifier.Equals(identifier));
         }
 
-    }
-
-    public class TilesetNotFoundException : Exception
-    {
-        public TilesetNotFoundException() { }
-        public TilesetNotFoundException(string message): base(message) { }
-        public TilesetNotFoundException(string message, Exception innerException): base(message, innerException) { }
     }
 }
