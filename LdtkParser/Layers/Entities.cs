@@ -9,7 +9,7 @@ namespace LdtkParser.Layers
     public class Entities: ILayer
     {
         public string Name { get; }
-        private List<EntityInstance> entityInstances;
+        private readonly List<EntityInstance> entityInstances;
 
         public Entities(string identifier, List<EntityInstance> ei)
         {
@@ -60,8 +60,11 @@ namespace LdtkParser.Layers
             GridPos = new Point((int)entityInstance.Grid[1], (int)entityInstance.Grid[1]);
             PxPos = new Point((int)entityInstance.Px[0], (int)entityInstance.Px[1]);
             Pivot = new double[2] { entityInstance.Pivot[0], entityInstance.Pivot[1] };
-            Tileset = World.GetTileset((int)entityInstance.Tile.TilesetUid);
-            TileSrc = new Rectangle((int)entityInstance.Tile.SrcRect[0], (int)entityInstance.Tile.SrcRect[1], (int)entityInstance.Tile.SrcRect[2], (int)entityInstance.Tile.SrcRect[3]);
+            if (entityInstance.Tile != null)
+            {
+                Tileset = World.GetTileset((int)entityInstance.Tile.TilesetUid);
+                TileSrc = new Rectangle((int)entityInstance.Tile.SrcRect[0], (int)entityInstance.Tile.SrcRect[1], (int)entityInstance.Tile.SrcRect[2], (int)entityInstance.Tile.SrcRect[3]);
+            }
             Fields = new ExpandoObject();
             ProcessFieldInstances(entityInstance);
         }
