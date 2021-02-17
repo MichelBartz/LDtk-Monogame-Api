@@ -1,7 +1,7 @@
 ﻿using Game1.Graphics;
-using Game1.LdtkParser;
-using Game1.LdtkParser.Graphics;
-using Game1.LdtkParser.Layers;
+using LdtkParser;
+using LdtkParser.Graphics;
+using LdtkParser.Layers;
 
 namespace Game1.Entity
 {
