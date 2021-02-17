@@ -25,8 +25,6 @@ namespace LdtkParser.Tests.Layers
 
     class EntitiesTests
     {
-        private Entities entities;
-
         [TestCaseSource(typeof(EntityInstanceData), nameof(EntityInstanceData.GetEntityParams))]
         public void GetEntity_Exist_ReturnsEntity(Entities entities)
         {

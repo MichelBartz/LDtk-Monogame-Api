@@ -8,7 +8,7 @@ namespace LdtkParser.Layers
     {
         public string Name { get; }
         public Tileset Tileset { get; }
-        public List<(Vector2, Rectangle)> TileCoords;
+        public List<(Vector2, Rectangle)> TileCoords { get; }
         public Tiles(string identifier, Tileset tileset)
         {
             Name = identifier;
