@@ -32,6 +32,50 @@ namespace LdtkParser.Tests.Unit
 
             Assert.IsNull(layer);
         }
+
+        [TestCaseSource(typeof(NeighbourData), nameof(NeighbourData.GetNeighbourParams))]
+        public void GetNeighbourByUid_ValidDirection_ReturnsNeighbour(Level level, Direction dir, int expectedUid)
+        {
+            var neighbourUid = level.GetNeighbourUid(dir);
+
+            Assert.AreEqual(expectedUid, neighbourUid);
+        }
+
+        [TestCaseSource(typeof(NeighbourData), nameof(NeighbourData.GetNeighbourParams))]
+        public void GetNeighbourByUid_InvalidDirection_WillSee(Level level, Direction dir, int expectedUid)
+        {
+            var neighbourUid = level.GetNeighbourUid(Direction.East);
+        }
+    }
+
+    internal class NeighbourData
+    {
+        public static IEnumerable GetNeighbourParams
+        {
+            get
+            {
+                yield return new object[] {
+                    GetLevelWithNeighbour("Level_1", new (int, string)[]{ (2, "n"), (4, "s"), (5, "w") }),
+                    Direction.West,
+                    5
+                };
+                yield return new object[] {
+                    GetLevelWithNeighbour("Level_1", new (int, string)[] { (2, "n"), (4, "s"), (5, "w") }),
+                    Direction.South,
+                    4
+                };
+            }
+        }
+
+        private static Level GetLevelWithNeighbour(string name, (int,string)[] neighbours)
+        {
+            var level = new Level(1, name, 0, 0);
+            foreach((int uid, string dir) neighbour in neighbours)
+            {
+                level.AddNeighbour(neighbour.uid, neighbour.dir);
+            }
+            return level;
+        }
     }
 
 
@@ -70,10 +114,6 @@ namespace LdtkParser.Tests.Unit
                 else if(t.Name == typeof(Entities).Name)
                 {
                     level.AddLayer(new Entities($"Layer_{layerNum}", new List<Json.EntityInstance>()));
-                }
-                else if(t.Name == typeof(Tiles).Name)
-                {
-                    //Not supported until I can figure out how to get this whole graphics device thingy figured out for unit tests
                 }
                 layerNum++;
             }
