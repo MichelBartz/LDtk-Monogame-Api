@@ -18,7 +18,7 @@ this interface is what is expected when calling `GetEntity<T>`.
 
 For now checkout this repo and add `LdtkParser` as a Project reference in Visual Studio
 
-API Documentation : https://michelbartz.github.io/LDtk-Monogame-Api/
+API Documentation : https://michelbartz.github.io/LdtkParser/
 
 **This is still currently WiP the API might change in the future**
 
