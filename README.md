@@ -34,7 +34,7 @@ var entities = ldtkLevel.GetLayerByName<Entities>("Layer_Name");
 var player = entities.GetEntity<Player>();
 ```
 
-Currently we do have a hard dependency on `GraphicsDevice` but it is something we want to move away from.
+Currently we do have a hard dependency on `GraphicsDevice` to generate `Texture2D` but it is something we want to move away from.
 
 ## Roadmap
 
