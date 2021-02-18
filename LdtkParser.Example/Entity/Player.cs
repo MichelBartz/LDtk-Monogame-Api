@@ -2,6 +2,7 @@
 using LdtkParser;
 using LdtkParser.Graphics;
 using LdtkParser.Layers;
+using Microsoft.Xna.Framework;
 
 namespace Game1.Entity
 {
@@ -27,11 +28,10 @@ namespace Game1.Entity
 
         public KeyFrame currentFrame = KeyFrame.Idle;
         public SpriteEnum Animations;
-        public void FromLdtk(EntityModel entity)
+        public void FromLdtk(EntityModel entityModel)
         {
-            //Animations = World.GetSpriteEnum(
-            //    ((EnumValue)entity.Fields.animations).EnumType
-            //);
+            Animations = World.GetSpriteEnum(entityModel.Fields.GetEnumValue("animations").EnumType);
+            Pos = entityModel.PxPos;
         }
 
         public void Update()
@@ -41,7 +41,7 @@ namespace Game1.Entity
 
         public override void Draw()
         {
-            //spriteRenderer.DrawAt(Animations.Tileset.Texture, Animations.GetSpriteByKey(currentFrame.ToString()).Source, Pos);
+            spriteRenderer.DrawAt(Animations.Tileset.Texture, Animations.GetSpriteByKey(currentFrame.ToString()).Source, Pos);
         }
     }
 }
