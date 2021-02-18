@@ -20,6 +20,8 @@ For now checkout this repo and add `LdtkParser` as a Project reference in Visual
 
 API Documentation : https://michelbartz.github.io/LDtk-Monogame-Api/
 
+**This is still currently WiP the API might change in the future**
+
 ## Example
 
 Simple Example
