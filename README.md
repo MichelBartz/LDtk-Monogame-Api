@@ -38,5 +38,6 @@ Currently we do have a hard dependency on `GraphicsDevice` to generate `Texture2
 
 ## Roadmap
 
+- Hot reload: The idea would be to have it on (i.e. `new World(file, GraphicsDevice, hotReload=true)`) then when the `.ldtk` file is update an event is propagated so the engine sitting on top can do refreshes if it wants to. This would enable fast prototyping scenarios (at least in my head)
 - Add integration tests that'll simply validate successful parsing of various file outputs.
 - Support for the upcoming 0.8
