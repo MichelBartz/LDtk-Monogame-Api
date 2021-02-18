@@ -18,6 +18,8 @@ this interface is what is expected when calling `GetEntity<T>`.
 
 For now checkout this repo and add `LdtkParser` as a Project reference in Visual Studio
 
+API Documentation : https://michelbartz.github.io/LDtk-Monogame-Api/
+
 ## Example
 
 Simple Example
@@ -34,6 +36,5 @@ Currently we do have a hard dependency on `GraphicsDevice` but it is something w
 
 ## Roadmap
 
-- API Documentation
 - Add integration tests that'll simply validate successful parsing of various file outputs.
 - Support for the upcoming 0.8
