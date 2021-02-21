@@ -180,6 +180,8 @@ namespace LdtkParser
             return intGrid;
         }
 
+        public List<Level> GetLevels() => levels;
+
         public Level GetLevel(string identifier) => levels.Find(l => l.LevelName.Equals(identifier));
 
         public Level GetLevelByUid(int uid) => levels.Find(l => l.Uid.Equals(uid));

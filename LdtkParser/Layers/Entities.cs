@@ -34,7 +34,7 @@ namespace LdtkParser.Layers
                 );
             } catch(InvalidOperationException e)
             {
-                throw new EntityNotFoundException($"Entity of type '{typeof(T)}' was not found in layer '{Name}'", e);
+                throw new EntityNotFoundException($"Entity of type '{typeof(T).Name}' was not found in layer '{Name}'", e);
             }
         }
 
