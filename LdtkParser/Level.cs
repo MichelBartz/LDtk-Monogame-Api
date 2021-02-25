@@ -30,21 +30,26 @@ namespace LdtkParser
         public Texture2D BackgroundImage { get; }
         public Point BackgroundPosition { get; }
 
+        public int Width { get; }
+        public int Height { get; }
+
         private readonly List<Neighbour> neighbours;
 
         private readonly List<ILayer> layers;
 
-        public Level(int uid, string name, int worldX, int worldY)
+        public Level(int uid, string name, int worldX, int worldY, int width, int height)
         {
             Uid = uid;
             LevelName = name;
             WorldX = worldX;
             WorldY = worldY;
+            Width = width;
+            Height = height;
 
             layers = new List<ILayer>();
             neighbours = new List<Neighbour>();
         }
-        public Level(int uid, string name, int worldX, int worldY, Texture2D background, Point bgPosition)
+        public Level(int uid, string name, int worldX, int worldY, int width, int height, Texture2D background, Point bgPosition)
         {
             Uid = uid;
             LevelName = name;
@@ -52,6 +57,8 @@ namespace LdtkParser
             BackgroundPosition = bgPosition;
             WorldX = worldX;
             WorldY = worldY;
+            Width = width;
+            Height = height;
 
             layers = new List<ILayer>();
             neighbours = new List<Neighbour>();

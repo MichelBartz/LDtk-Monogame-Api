@@ -71,7 +71,7 @@ namespace LdtkParser.Tests.Unit
 
         private static Level GetLevelWithNeighbour(string name, (int,string)[] neighbours)
         {
-            var level = new Level(1, name, 0, 0);
+            var level = new Level(1, name, 0, 0, 100, 100);
             foreach((int uid, string dir) neighbour in neighbours)
             {
                 level.AddNeighbour(neighbour.uid, neighbour.dir);
@@ -104,7 +104,7 @@ namespace LdtkParser.Tests.Unit
 
         private static Level GetLevelWithLayers(string name, Type[] layerTypes)
         {
-            var level = new Level(1, name, 0, 0);
+            var level = new Level(1, name, 0, 0, 100, 100);
 
             int layerNum = 0;
             foreach (Type t in layerTypes)

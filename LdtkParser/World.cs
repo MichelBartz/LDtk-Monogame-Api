@@ -121,11 +121,11 @@ namespace LdtkParser
                 var texture = Texture2D.FromFile(GraphicsDevice, Path.Combine(worldDirectory, l.BgRelPath));
                 var bgPosition = new Point((int)l.BgPos.TopLeftPx[0], (int)l.BgPos.TopLeftPx[1]);
 
-                level = new Level((int)l.Uid, l.Identifier, (int)l.WorldX, (int)l.WorldY, texture, bgPosition);
+                level = new Level((int)l.Uid, l.Identifier, (int)l.WorldX, (int)l.WorldY, (int)l.PxWid, (int)l.PxHei, texture, bgPosition);
             }
             else
             {
-                level = new Level((int)l.Uid, l.Identifier, (int)l.WorldX, (int)l.WorldY);
+                level = new Level((int)l.Uid, l.Identifier, (int)l.WorldX, (int)l.WorldY, (int)l.PxWid, (int)l.PxHei);
             }
 
             l.LayerInstances.ForEach(l => LoadLayer(level, l));
