@@ -150,7 +150,7 @@ namespace LdtkParser
 
         private Tiles ToTiles(LayerInstance layer)
         {
-            var tiles = new Tiles(layer.Identifier, GetTileset((int)layer.TilesetDefUid));
+            var tiles = new Tiles(layer.Identifier, GetTileset((int)layer.TilesetDefUid), new Vector2((float)layer.PxOffsetX, (float)layer.PxOffsetY));
             layer.GridTiles.ForEach(delegate (GridTile gridTile)
             {
                 var coords = new Vector2((float)gridTile.Px[0], (float)gridTile.Px[1]);

@@ -9,11 +9,14 @@ namespace LdtkParser.Layers
         public string Name { get; }
         public Tileset Tileset { get; }
         public List<(Vector2, Rectangle)> TileCoords { get; }
-        public Tiles(string identifier, Tileset tileset)
+
+        public Vector2 Offset { get; }
+        public Tiles(string identifier, Tileset tileset, Vector2 offset)
         {
             Name = identifier;
             Tileset = tileset;
             TileCoords = new List<(Vector2, Rectangle)>();
+            Offset = offset;
         }
 
         public LayerType GetLayerType() => LayerType.Tiles;
