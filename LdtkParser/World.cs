@@ -169,15 +169,33 @@ namespace LdtkParser
         private IntGrid ToIntGrid(LayerInstance layer)
         {
             var intGrid = new IntGrid(layer.Identifier);
-            layer.IntGrid.ForEach(delegate (LdtkIntGrid iGrid)
-            {
-                int y = (int)(iGrid.CoordId / layer.CWid);
-                int x = (int)(iGrid.CoordId - (y * layer.CWid));
-
-                intGrid.AddValue(new Point(x, y), (int)iGrid.V);
-            });
-
             intGrid.GridSize = (int)layer.GridSize;
+
+            if (layer.IntGridCsv != null)
+            {
+                var gridW = (int)layer.CWid;
+                var gridH = (int)layer.CHei;
+                int index = 0;
+
+                for(int x=0; x < gridW; x++)
+                {
+                    for (int y=0; y < gridH; y++)
+                    {
+                        intGrid.AddValue(new Point(x, y), layer.IntGridCsv[index]);
+                        index++;
+                    }
+                }
+            }
+            else
+            {
+                layer.IntGrid.ForEach(delegate (LdtkIntGrid iGrid)
+                {
+                    int y = (int)(iGrid.CoordId / layer.CWid);
+                    int x = (int)(iGrid.CoordId - (y * layer.CWid));
+
+                    intGrid.AddValue(new Point(x, y), (int)iGrid.V);
+                });
+            }
 
             return intGrid;
         }

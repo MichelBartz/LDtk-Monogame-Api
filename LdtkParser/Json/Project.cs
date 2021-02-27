@@ -272,7 +272,7 @@ namespace LdtkParser.Json
         [JsonProperty("pxOffsetY")]
         public long PxOffsetY { get; set; }
 
-        [JsonProperty("intGridValues")]
+        [JsonProperty("intGridValues", NullValueHandling = NullValueHandling.Ignore)]
         public List<IntGridValue> IntGridValues { get; set; }
 
         [JsonProperty("autoTilesetDefUid")]
@@ -487,6 +487,9 @@ namespace LdtkParser.Json
 
         [JsonProperty("intGrid")]
         public List<IntGrid> IntGrid { get; set; }
+
+        [JsonProperty("intGridCsv", NullValueHandling = NullValueHandling.Ignore)]
+        public int[] IntGridCsv { get; set; }
 
         [JsonProperty("autoLayerTiles")]
         public List<object> AutoLayerTiles { get; set; }
