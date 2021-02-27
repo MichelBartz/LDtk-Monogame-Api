@@ -7,6 +7,7 @@ namespace LdtkParser.Layers
     {
         public string Name { get; }
         public List<(Point Coord, int Value)> Values;
+        public int GridSize { get; set; }
 
         public IntGrid(string identifier)
         {

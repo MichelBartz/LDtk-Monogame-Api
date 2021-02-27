@@ -177,6 +177,8 @@ namespace LdtkParser
                 intGrid.AddValue(new Point(x, y), (int)iGrid.V);
             });
 
+            intGrid.GridSize = (int)layer.GridSize;
+
             return intGrid;
         }
 
