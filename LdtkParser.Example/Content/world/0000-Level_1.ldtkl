@@ -5,7 +5,7 @@
 		"doc": "https://ldtk.io/json",
 		"schema": "https://ldtk.io/files/JSON_SCHEMA.json",
 		"appAuthor": "Sebastien 'deepnight' Benard",
-		"appVersion": "0.7.2",
+		"appVersion": "0.8.0",
 		"url": "https://ldtk.io"
 	},
 	"identifier": "Level_1",
@@ -22,6 +22,7 @@
 	"bgPivotY": 0.5,
 	"__bgPos": { "topLeftPx": [0,0], "scale": [1,1], "cropRect": [0,0,128,128] },
 	"externalRelPath": null,
+	"fieldInstances": [],
 	"layerInstances": [
 		{
 			"__identifier": "Collision",
@@ -38,6 +39,7 @@
 			"layerDefUid": 9,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
+			"visible": true,
 			"intGrid": [
 				{ "coordId": 47, "v": 1 },
 				{ "coordId": 63, "v": 1 },
@@ -80,8 +82,19 @@
 				{ "coordId": 254, "v": 0 },
 				{ "coordId": 255, "v": 0 }
 			],
+			"intGridCsv": [
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,
+				0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,
+				0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,
+				0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+				2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,2,0,
+				0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,
+				1,1,1,1,1,1,1,1,1,1,1
+			],
 			"autoLayerTiles": [],
 			"seed": 1247504,
+			"overrideTilesetUid": null,
 			"gridTiles": [],
 			"entityInstances": []
 		},
@@ -100,53 +113,136 @@
 			"layerDefUid": 5,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
+			"visible": true,
 			"intGrid": [],
+			"intGridCsv": [],
 			"autoLayerTiles": [],
 			"seed": 5687967,
+			"overrideTilesetUid": null,
 			"gridTiles": [],
 			"entityInstances": [
-				{ "__identifier": "DoorSwitch", "__grid": [12,14], "__pivot": [0.5,0.5], "__tile": { "tilesetUid": 10, "srcRect": [56,0,8,8] }, "defUid": 6, "px": [100,116], "fieldInstances": [] },
-				{ "__identifier": "SpikeBottom", "__grid": [3,14], "__pivot": [0.5,1], "__tile": { "tilesetUid": 10, "srcRect": [80,8,8,8] }, "defUid": 7, "px": [28,120], "fieldInstances": [] },
-				{ "__identifier": "SpikeBottom", "__grid": [4,14], "__pivot": [0.5,1], "__tile": { "tilesetUid": 10, "srcRect": [80,8,8,8] }, "defUid": 7, "px": [36,120], "fieldInstances": [] },
-				{ "__identifier": "SpikeBottom", "__grid": [9,14], "__pivot": [0.5,1], "__tile": { "tilesetUid": 10, "srcRect": [80,8,8,8] }, "defUid": 7, "px": [76,120], "fieldInstances": [] },
-				{ "__identifier": "PowerUp", "__grid": [12,11], "__pivot": [0.5,0.5], "__tile": { "tilesetUid": 10, "srcRect": [32,8,8,8] }, "defUid": 4, "px": [100,92], "fieldInstances": [
-					{
-						"__identifier": "testenum",
-						"__value": "Value",
-						"__type": "LocalEnum.TestEnum",
-						"defUid": 21,
+				{
+					"__identifier": "DoorSwitch",
+					"__grid": [12,14],
+					"__pivot": [0.5,0.5],
+					"__tile": { "tilesetUid": 10, "srcRect": [56,0,8,8] },
+					"width": 8,
+					"height": 8,
+					"defUid": 6,
+					"px": [100,116],
+					"fieldInstances": []
+				},
+				{
+					"__identifier": "SpikeBottom",
+					"__grid": [3,14],
+					"__pivot": [0.5,1],
+					"__tile": { "tilesetUid": 10, "srcRect": [80,8,8,8] },
+					"width": 8,
+					"height": 8,
+					"defUid": 7,
+					"px": [28,120],
+					"fieldInstances": []
+				},
+				{
+					"__identifier": "SpikeBottom",
+					"__grid": [4,14],
+					"__pivot": [0.5,1],
+					"__tile": { "tilesetUid": 10, "srcRect": [80,8,8,8] },
+					"width": 8,
+					"height": 8,
+					"defUid": 7,
+					"px": [36,120],
+					"fieldInstances": []
+				},
+				{
+					"__identifier": "SpikeBottom",
+					"__grid": [9,14],
+					"__pivot": [0.5,1],
+					"__tile": { "tilesetUid": 10, "srcRect": [80,8,8,8] },
+					"width": 8,
+					"height": 8,
+					"defUid": 7,
+					"px": [76,120],
+					"fieldInstances": []
+				},
+				{
+					"__identifier": "PowerUp",
+					"__grid": [12,11],
+					"__pivot": [0.5,0.5],
+					"__tile": { "tilesetUid": 10, "srcRect": [32,8,8,8] },
+					"width": 8,
+					"height": 8,
+					"defUid": 4,
+					"px": [100,92],
+					"fieldInstances": [
+						{
+							"__identifier": "testenum",
+							"__value": "Value",
+							"__type": "LocalEnum.TestEnum",
+							"defUid": 21,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["Value"]
+							}]
+						},
+						{ "__identifier": "strength", "__value": 12, "__type": "Int", "defUid": 22, "realEditorValues": [] },
+						{ "__identifier": "redColor", "__value": "#B74B4B", "__type": "Color", "defUid": 23, "realEditorValues": [] },
+						{
+							"__identifier": "point",
+							"__value": { "cx": 12, "cy": 11 },
+							"__type": "Point",
+							"defUid": 24,
+							"realEditorValues": [{
+								"id": "V_String",
+								"params": ["12,11"]
+							}]
+						},
+						{ "__identifier": "someNumber", "__value": 1.2, "__type": "Float", "defUid": 25, "realEditorValues": [] },
+						{ "__identifier": "exists", "__value": true, "__type": "Bool", "defUid": 26, "realEditorValues": [] }
+					]
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [13,14],
+					"__pivot": [0,0.5],
+					"__tile": { "tilesetUid": 10, "srcRect": [40,0,8,8] },
+					"width": 8,
+					"height": 8,
+					"defUid": 8,
+					"px": [104,116],
+					"fieldInstances": []
+				},
+				{
+					"__identifier": "Door",
+					"__grid": [13,13],
+					"__pivot": [0,0.5],
+					"__tile": { "tilesetUid": 10, "srcRect": [40,0,8,8] },
+					"width": 8,
+					"height": 8,
+					"defUid": 8,
+					"px": [104,108],
+					"fieldInstances": []
+				},
+				{
+					"__identifier": "Player",
+					"__grid": [2,13],
+					"__pivot": [0,0],
+					"__tile": { "tilesetUid": 10, "srcRect": [64,0,8,8] },
+					"width": 8,
+					"height": 8,
+					"defUid": 12,
+					"px": [16,104],
+					"fieldInstances": [{
+						"__identifier": "animations",
+						"__value": "Idle",
+						"__type": "LocalEnum.PlayerAnimation",
+						"defUid": 16,
 						"realEditorValues": [{
 							"id": "V_String",
-							"params": ["Value"]
+							"params": ["Idle"]
 						}]
-					},
-					{ "__identifier": "strength", "__value": 12, "__type": "Int", "defUid": 22, "realEditorValues": [] },
-					{ "__identifier": "redColor", "__value": "#B74B4B", "__type": "Color", "defUid": 23, "realEditorValues": [] },
-					{
-						"__identifier": "point",
-						"__value": { "cx": 12, "cy": 11 },
-						"__type": "Point",
-						"defUid": 24,
-						"realEditorValues": [{
-							"id": "V_String",
-							"params": ["12,11"]
-						}]
-					},
-					{ "__identifier": "someNumber", "__value": 1.2, "__type": "Float", "defUid": 25, "realEditorValues": [] },
-					{ "__identifier": "exists", "__value": true, "__type": "Bool", "defUid": 26, "realEditorValues": [] }
-				] },
-				{ "__identifier": "Door", "__grid": [13,14], "__pivot": [0,0.5], "__tile": { "tilesetUid": 10, "srcRect": [40,0,8,8] }, "defUid": 8, "px": [104,116], "fieldInstances": [] },
-				{ "__identifier": "Door", "__grid": [13,13], "__pivot": [0,0.5], "__tile": { "tilesetUid": 10, "srcRect": [40,0,8,8] }, "defUid": 8, "px": [104,108], "fieldInstances": [] },
-				{ "__identifier": "Player", "__grid": [2,13], "__pivot": [0,0], "__tile": { "tilesetUid": 10, "srcRect": [64,0,8,8] }, "defUid": 12, "px": [16,104], "fieldInstances": [{
-					"__identifier": "animations",
-					"__value": "Idle",
-					"__type": "LocalEnum.PlayerAnimation",
-					"defUid": 16,
-					"realEditorValues": [{
-						"id": "V_String",
-						"params": ["Idle"]
 					}]
-				}] }
+				}
 			]
 		},
 		{
@@ -164,9 +260,12 @@
 			"layerDefUid": 3,
 			"pxOffsetX": 0,
 			"pxOffsetY": 0,
+			"visible": true,
 			"intGrid": [],
+			"intGridCsv": [],
 			"autoLayerTiles": [],
 			"seed": 6084885,
+			"overrideTilesetUid": null,
 			"gridTiles": [
 				{ "px": [0,8], "src": [32,0], "f": 0, "t": 4, "d": [16] },
 				{ "px": [8,8], "src": [32,0], "f": 0, "t": 4, "d": [17] },

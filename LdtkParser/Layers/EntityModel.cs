@@ -23,8 +23,8 @@ namespace LdtkParser.Layers
             GridPos = new Point((int)entityInstance.Grid[1], (int)entityInstance.Grid[1]);
             PxPos = new Vector2((int)entityInstance.Px[0], (int)entityInstance.Px[1]);
             Pivot = new double[2] { entityInstance.Pivot[0], entityInstance.Pivot[1] };
-            Width = (int)entityInstance.Tile.SrcRect[3];
-            Height = (int)entityInstance.Tile.SrcRect[4];
+            Width = (int)entityInstance.Tile.SrcRect[2];
+            Height = (int)entityInstance.Tile.SrcRect[3];
             if (entityInstance.Tile != null)
             {
                 Tileset = World.GetTileset((int)entityInstance.Tile.TilesetUid);
