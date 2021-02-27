@@ -50,6 +50,8 @@ namespace LdtkParser.Layers
                 .ToList();
         }
 
+        public List<EntityModel> GetEntities() => entityInstances.Select(ei => new EntityModel(ei)).ToList();
+
         private T Convert<T>(EntityInstance ei) where T: ILdtkEntity, new()
         {
             var entity = new T();

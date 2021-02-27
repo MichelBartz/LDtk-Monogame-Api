@@ -14,12 +14,17 @@ namespace LdtkParser.Layers
         public Graphics.Tileset Tileset { get; }
         public FieldStore Fields { get; }
 
+        public int Width { get; }
+        public int Height { get; }
+
         public EntityModel(EntityInstance entityInstance)
         {
             Identifier = entityInstance.Identifier;
             GridPos = new Point((int)entityInstance.Grid[1], (int)entityInstance.Grid[1]);
             PxPos = new Vector2((int)entityInstance.Px[0], (int)entityInstance.Px[1]);
             Pivot = new double[2] { entityInstance.Pivot[0], entityInstance.Pivot[1] };
+            Width = (int)entityInstance.Tile.SrcRect[3];
+            Height = (int)entityInstance.Tile.SrcRect[4];
             if (entityInstance.Tile != null)
             {
                 Tileset = World.GetTileset((int)entityInstance.Tile.TilesetUid);
