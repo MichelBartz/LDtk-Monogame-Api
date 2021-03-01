@@ -177,9 +177,9 @@ namespace LdtkParser
                 var gridH = (int)layer.CHei;
                 int index = 0;
 
-                for(int x=0; x < gridW; x++)
+                for(int y=0; y < gridH; y++)
                 {
-                    for (int y=0; y < gridH; y++)
+                    for (int x=0; x < gridW; x++)
                     {
                         intGrid.AddValue(new Point(x, y), layer.IntGridCsv[index]);
                         index++;
